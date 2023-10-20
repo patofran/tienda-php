@@ -10,7 +10,7 @@
 
         <?php
             $conexion = new mysqli("localhost", "dwes", "dwes", "dwes");
-            $dwes->autocommit(false);
+            $conexion->autocommit(false);
             $unidadesCentral = null;
             $unidadesSucursal1 = null;
             $unidadesSucursal2 = null;
@@ -38,17 +38,17 @@
 
             if (isset($_GET["codigo"]) && isset($_GET["1"])) {
                 $consulta = $conexion->query("UPDATE `stock` SET `unidades` = '$unidadesCentral' WHERE `stock`.`producto` = '$producto' AND `stock`.`tienda` = 1");
-                $dwes->commit();
+                $conexion->commit();
             }
 
             if (isset($_GET["codigo"]) && isset($_GET["2"])) {
                 $consulta = $conexion->query("UPDATE `stock` SET `unidades` = '$unidadesSucursal1' WHERE `stock`.`producto` = '$producto' AND `stock`.`tienda` = 2");
-                $dwes->commit();
+                $conexion->commit();
             }
 
             if (isset($_GET["codigo"]) && isset($_GET["3"])) {
                 $consulta = $conexion->query("UPDATE `stock` SET `unidades` = '$unidadesSucursal2' WHERE `stock`.`producto` = '$producto' AND `stock`.`tienda` = 3");
-                $dwes->commit();
+                $conexion->commit();
             }
 
             if (isset($_GET["codigo"])) {
@@ -68,6 +68,7 @@
                     }
                 }
                 echo "<br><br><input type= 'submit' value = 'Actualizar'><input type = 'hidden' name = 'codigo' value = '" . $_GET["cod"] . "'> </form>";
+                echo "<p>en caso de no querrer actualizar <a href='productos.php'>Volver</a></p>";
                 $conexion->close();
             }
 

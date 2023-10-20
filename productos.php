@@ -36,6 +36,7 @@
                         }
                     }
             echo "</table>";
+            $conexion->close();
         ?>
     </body>
 </html>

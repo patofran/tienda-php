@@ -10,6 +10,7 @@
 
         <?php
             $conexion = new mysqli("localhost", "dwes", "dwes", "dwes");
+            $dwes->autocommit(false);
             $unidadesCentral = null;
             $unidadesSucursal1 = null;
             $unidadesSucursal2 = null;
@@ -37,14 +38,17 @@
 
             if (isset($_GET["codigo"]) && isset($_GET["1"])) {
                 $consulta = $conexion->query("UPDATE `stock` SET `unidades` = '$unidadesCentral' WHERE `stock`.`producto` = '$producto' AND `stock`.`tienda` = 1");
+                $dwes->commit();
             }
 
             if (isset($_GET["codigo"]) && isset($_GET["2"])) {
                 $consulta = $conexion->query("UPDATE `stock` SET `unidades` = '$unidadesSucursal1' WHERE `stock`.`producto` = '$producto' AND `stock`.`tienda` = 2");
+                $dwes->commit();
             }
 
             if (isset($_GET["codigo"]) && isset($_GET["3"])) {
                 $consulta = $conexion->query("UPDATE `stock` SET `unidades` = '$unidadesSucursal2' WHERE `stock`.`producto` = '$producto' AND `stock`.`tienda` = 3");
+                $dwes->commit();
             }
 
             if (isset($_GET["codigo"])) {
